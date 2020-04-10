@@ -1,0 +1,66 @@
+<div class="col-md-12">
+  <h3>Create Session</h3>
+</div>
+<div class="col-md-6">
+  <form [formGroup]="sessionForm" (ngSubmit)="SaveSession()" autocomplete="off">
+    <div class="form-group">
+      <label for="sessionName">Session Name:</label>
+      <em *ngIf="HasError(name)">{{ name.errorMessage }} </em>
+      <input
+        formControlName="name"
+        id="sessionName"
+        type="text"
+        class="form-control"
+        placeholder="session name..."
+      />
+    </div>
+    <div class="form-group">
+      <label for="eventDate">Presenter:</label>
+      <em *ngIf="HasError(presenter)">{{ presenter.errorMessage }} </em>
+      <input
+        formControlName="presenter"
+        id="presenter"
+        type="text"
+        class="form-control"
+        placeholder="presenter..."
+      />
+    </div>
+    <div class="form-group">
+      <label for="duration">Duration:</label>
+      <em *ngIf="HasError(duration)">{{ duration.errorMessage }} </em>
+      <select class="form-control" formControlName="duration">
+        <option value="">select duration...</option>
+        <option *ngFor="let duration of durations" [value]="duration.id">
+          {{ duration.text }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="level">Level:</label>
+      <em *ngIf="HasError(level)">{{ level.errorMessage }} </em>
+      <select class="form-control" formControlName="level">
+        <option value="">select level...</option>
+        <option *ngFor="let level of levels" [value]="level">
+          {{ level }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="abstract">abstract:</label>
+      <em *ngIf="HasError(abstract)">{{ abstract.errorMessage }} </em>
+      <textarea
+        formControlName="abstract"
+        id="abstract"
+        rows="3"
+        class="form-control"
+        placeholder="abstract..."
+      ></textarea>
+    </div>
+    <button type="submit" [disabled]="!IsValidFrom()" class="btn btn-primary">
+      Save
+    </button>
+    <button type="button" (click)="Cancel()" class="btn btn-default">
+      Cancel
+    </button>
+  </form>
+</div>

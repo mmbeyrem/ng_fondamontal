@@ -1,0 +1,35 @@
+<div class="row" style="margin-bottom: 10px;">
+  <div class="col-md-1" *ngIf="!authService.IsAuthenticated()">
+    <a class="btn btn-primary" href="/user/login">login to get Votes</a>
+  </div>
+</div>
+<div class="row" *ngFor="let session of sessions">
+  <div class="col-md-1" *ngIf="authService.IsAuthenticated()">
+    <upvote
+      (vote)="toggleVote(session)"
+      [count]="session.voters.length"
+      [voted]="userHasVoted(session)"
+    >
+    </upvote>
+  </div>
+  <div class="col-md-10">
+    <collapsible-well>
+      <div well-title>
+        {{ session.name }}
+        <i
+          *ngIf="session.voters.length >= 3"
+          class="glyphicon glyphicon-fire"
+          style="color: red;"
+        >
+        </i>
+      </div>
+      <div well-body>
+        <h6>{{ session.presenter }}</h6>
+        <span>Duration: {{ session.duration | duration }}</span
+        ><br />
+        <span>Level: {{ session.level }}</span>
+        <p>{{ session.abstract }}</p>
+      </div>
+    </collapsible-well>
+  </div>
+</div>

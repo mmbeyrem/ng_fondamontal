@@ -1,0 +1,10 @@
+<div><h1>Umpocing Angular Events</h1></div>
+<hr />
+<div>
+  <div class="row">
+    <div class="col-md-5" *ngFor="let event of events">
+      <eventthumbnail [event]="event" (click)="handleNailClick(event.name)">
+      </eventthumbnail>
+    </div>
+  </div>
+</div>

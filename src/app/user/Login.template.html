@@ -1,0 +1,41 @@
+<h1>Login</h1>
+<hr />
+<div class="col-md-4">
+  <form autocomplete="off" #LoginForm="ngForm" (ngSubmit)="login()" novalidate>
+    {{diagnostic}}
+    <div class="form-group">
+      <label for="userName">User Name:</label>
+      <input
+        required
+        [(ngModel)]="model.userName"
+        id="userName"
+        name="userName"
+        type="text"
+        class="form-control"
+        placeholder="User Name..."
+        #userName="ngModel"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        required
+        [(ngModel)]="model.password"
+        id="password"
+        name="password"
+        type="password"
+        class="form-control"
+        placeholder="Password..."
+        #password="ngModel"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">
+      Login
+    </button>
+    <button type="button" (click)="cancel()" class="btn btn-default">
+      Cancel
+    </button>
+  </form>
+  <br />
+  <div *ngIf="loginInvalid" class="alert alert-danger">Invalid credentail</div>
+</div>
